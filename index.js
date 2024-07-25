@@ -13,5 +13,8 @@ import jwt from 'jsonwebtoken'
    }).catch((error)=>{
      console.log(`database failed to  connect due to ${error}`)
    })
+   app.listen(port,()=>{
+     console.log('the port is running  on 400')
+   })
    //password for database:2Vcjz9e8BGBXY0gr
    
