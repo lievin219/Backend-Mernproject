@@ -13,8 +13,37 @@ import jwt from 'jsonwebtoken'
    }).catch((error)=>{
      console.log(`database failed to  connect due to ${error}`)
    })
-   app.listen(port,()=>{
-     console.log('the port is running  on 400')
+   app.listen(port,(err)=>{
+    if(err){
+         console.log(` an eror which is cousing problems is :${err}`)
+                        
+    }
+    else{
+     console.log(`the port is running  on port of ${port}`)}
+   })
+   app.get('/',(req,res)=>{
+       res.send('Express is on now!!')
    })
    //password for database:2Vcjz9e8BGBXY0gr
+
+
+   //multer for storage of pictures
+
+    const storage=multer.diskStorage({
+         destination:'./Backend/images',
+          filename:(req,file,cb)=>{
+             return  cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+          }
+    })
+     const upload=multer({storage:multer.diskStorage({
+        destination:'./Backend/images',
+         filename:(req,file,cb)=>{
+            return  cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+         }
+   })})
+
+
+  app.post("/upload",upload.single('product'),(req,res)=>{
+        res.json({success:'posted  success',image_Url:``})        
+  })
    
