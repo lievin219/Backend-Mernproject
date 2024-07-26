@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
-  id: {
+  idi: {
     type: Number,
     required: true
   },
@@ -35,7 +35,7 @@ const productSchema = new mongoose.Schema({
   }
 });
 
-const FinalProducts = mongoose.model("ProductData", productSchema);
+const FinalProducts = mongoose.model("ProductDatabase", productSchema);
 
 export default FinalProducts;
 
