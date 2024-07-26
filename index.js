@@ -39,6 +39,6 @@ import jwt from 'jsonwebtoken'
 
 app.use('/images',express.static('Upload/images'))
   app.post("/upload",upload.single('product'),(req,res)=>{
-        res.json({success:'posted  success',image_Url:`https://locahost:${port}/images/${req.file.filename}`})        
+        res.json({success:'posted  success',image_Url:`http://locahost:${port}/images/${req.file.filename}`})        
   })
    
