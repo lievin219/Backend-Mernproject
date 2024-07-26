@@ -30,20 +30,15 @@ import jwt from 'jsonwebtoken'
    //multer for storage of pictures
 
     const storage=multer.diskStorage({
-         destination:'./Backend/images',
+         destination:'./Upload/images',
           filename:(req,file,cb)=>{
              return  cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
           }
     })
-     const upload=multer({storage:multer.diskStorage({
-        destination:'./Backend/images',
-         filename:(req,file,cb)=>{
-            return  cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-         }
-   })})
+     const upload=multer({storage:storage})
 
-
+app.use('/images',express.static('Upload/images'))
   app.post("/upload",upload.single('product'),(req,res)=>{
-        res.json({success:'posted  success',image_Url:``})        
+        res.json({success:'posted  success',image_Url:`https://locahost:${port}/images/${req.file.filename}`})        
   })
    
