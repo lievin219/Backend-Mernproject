@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import multer from 'multer'
+import products from './Routers/product.js';
 import jwt from 'jsonwebtoken'
  import path from 'path'
  import mongoose from 'mongoose'
@@ -38,6 +39,7 @@ import jwt from 'jsonwebtoken'
      const upload=multer({storage:storage})
 
 app.use('/images',express.static('Upload/images'))
+app.use("/",products)
   app.post("/upload",upload.single('product'),(req,res)=>{
         res.json({success:'posted  success',image_Url:`http://locahost:${port}/images/${req.file.filename}`})        
   })
