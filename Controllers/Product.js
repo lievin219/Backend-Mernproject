@@ -4,21 +4,22 @@ import FinalProducts from '../Models/product.js'
 
 
  export const addProduct=async(req,res)=>{
+    let productse=await FinalProducts.find({})
+    let idi;
+     if(productse.length>0){
+         let last_product_inarray=productse.slice(-1)
+         let last_product=last_product_inarray[0]
+         idi=last_product.id+1
+     }
+     else{
+        idi=1;
+     }
 
     try{
-        let productse=await FinalProducts.find({})
-         let idi;
-          if(productse.length>0){
-              let last_product_inarray=productse.slice(-1)
-              let last_product=last_product_inarray[0]
-              id=last_product.id+1
-          }
-          else{
-             idi=1;
-          }
+     
            
         const product=new FinalProducts({
-             idi:idi,
+             id:idi,
              name:req.body.name,
              image:req.body.image,
              category:req.body.category,
@@ -64,7 +65,7 @@ import FinalProducts from '../Models/product.js'
 
 export const deleteProduct = async (req, res) => {
   try {
-    const productid = req.body.idi;
+   
     
 
     // Ensure productid is a valid ObjectId
@@ -72,7 +73,7 @@ export const deleteProduct = async (req, res) => {
       return res.status(400).json({ error: 'Invalid product ID' });
     }
 
-    const deletedProduct = await FinalProducts.findByIdAndDelete(req.body.idi);
+    const deletedProduct = await FinalProducts.findByIdAndDelete({id:req.body.id});
 
     if (deletedProduct) {
       res.json({ success: 'Product deleted successfully', name: 'succeed' });
