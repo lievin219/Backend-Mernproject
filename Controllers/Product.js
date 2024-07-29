@@ -98,4 +98,19 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+ export const getProducts=async(req,res)=>{
+  try{
+      const allproducts=await FinalProducts.find()
+       if(allproducts.length>0){
+         res.status(400).json({success:'all products',message:allproducts})
+       }
+       else if(allproducts.length<0){
+         res.status(401).json('no products there in the store')
+       }
+      }
+       catch(err){
+         res.status(600).json(`error:${err}`)
+         
+       }
+   
+ }
