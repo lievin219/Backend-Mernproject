@@ -63,17 +63,31 @@ import FinalProducts from '../Models/product.js'
 //   const mongoose = require('mongoose');
 // const FinalProducts = require('../models/FinalProducts'); // Adjust the path to your FinalProducts model
 
-export const deleteProduct = async (req, res) => {
-  try {
+// export const deleteProduct = async (req, res) => {
+//   try {
    
     
 
-    // Ensure productid is a valid ObjectId
-    if (!mongoose.Types.ObjectId.isValid(productid)) {
-      return res.status(400).json({ error: 'Invalid product ID' });
-    }
 
-    const deletedProduct = await FinalProducts.findByIdAndDelete({id:req.body.id});
+//     const deletedProduct = await FinalProducts.findByIdAndDelete({
+//         id:req.params.id});
+
+//     if (deletedProduct) {
+//       res.json({ success: 'Product deleted successfully', name: 'succeed' });
+//     } else {
+//       res.status(404).json('Product not found');
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+export const deleteProduct = async (req, res) => {
+  try {
+    // Find the product by the `id` field, not `_id`
+     const producti=Number(req.params.id)
+    const deletedProduct = await FinalProducts.deleteOne({ id: producti });
+    
+
 
     if (deletedProduct) {
       res.json({ success: 'Product deleted successfully', name: 'succeed' });
@@ -84,3 +98,4 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
