@@ -5,6 +5,10 @@ import products from './Routers/product.js';
 import jwt from 'jsonwebtoken'
  import path from 'path'
  import mongoose from 'mongoose'
+ import { fileURLToPath } from 'url';
+ const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
   const port =4000;
    const app=express()
    app.use(express.json())
@@ -38,9 +42,9 @@ import jwt from 'jsonwebtoken'
     })
      const upload=multer({storage:storage})
 
-app.use('/images',express.static('Upload/images'))
+app.use('/images',express.static(path.join(__dirname,'Upload/images')))
 app.use("/",products)
   app.post("/upload",upload.single('product'),(req,res)=>{
-        res.json({success:true,image_Url:`http://locahost:${port}/images/${req.file.filename}`})        
-  })
+        res.json({success:true,image_Url:`http://localhost:${port}/images/${req.file.filename}`})      
+  })        
    
