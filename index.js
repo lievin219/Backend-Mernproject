@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import multer from 'multer'
 import products from './Routers/product.js';
+import Users from './Routers/user.js';
 import jwt from 'jsonwebtoken'
  import path from 'path'
  import mongoose from 'mongoose'
@@ -44,6 +45,7 @@ const __dirname = path.dirname(__filename);
 
 app.use('/images',express.static(path.join(__dirname,'Upload/images')))
 app.use("/",products)
+app.use("/",Users)
   app.post("/upload",upload.single('product'),(req,res)=>{
         res.json({success:true,image_Url:`http://localhost:${port}/images/${req.file.filename}`})      
   })        

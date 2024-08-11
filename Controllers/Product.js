@@ -81,23 +81,49 @@ import FinalProducts from '../Models/product.js'
 //     res.status(500).json({ error: error.message });
 //   }
 // };
-export const deleteProduct = async (req, res) => {
-  try {
-    // Find the product by the `id` field, not `_id`
-     const producti=Number(req.params.id)
-    const deletedProduct = await FinalProducts.deleteOne({ id: producti });
+// export const deleteProduct = async (req, res) => {
+//   try {
+//     // Find the product by the `id` field, not `_id`
+//      const producti=Number(req.params.id)
+//     const deletedProduct = await FinalProducts.deleteOne({ id: producti });
     
 
 
-    if (deletedProduct) {
-      res.json({ success: 'Product deleted successfully', name: 'succeed' });
-    } else {
-      res.status(404).json('Product not found');
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+//     if (deletedProduct) {
+//       res.json({ success: 'Product deleted successfully', name: 'succeed' });
+//     } else {
+//       res.status(404).json('Product not found');
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+export const deleteProduct = async (req, res) => {
+  try {
+      const productId = parseInt(req.params.id, 10); // Convert to number
+      console.log('Received productId:', productId); // Debugging line
+
+      if (isNaN(productId)) {
+          return res.status(400).json({ message: 'Invalid product ID' });
+      }
+
+      // Find and delete the product by its numeric ID
+      const deletedProduct = await FinalProducts.findOneAndDelete({ id: productId });
+
+      if (!deletedProduct) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
+
+      res.json({ message: 'Product deleted successfully', id: deletedProduct.ide, name: deletedProduct.name });
+  } catch (err) {
+      res.status(500).json({ message: `An error occurred: ${err.message}` });
+      console.log(err);
   }
 };
+
+
+
+
  export const getProducts=async(req,res)=>{
   try{
       const allproducts=await FinalProducts.find()
