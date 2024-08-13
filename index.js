@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
  import path from 'path'
  import mongoose from 'mongoose'
  import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
  const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -14,6 +15,7 @@ const __dirname = path.dirname(__filename);
    const app=express()
    app.use(express.json())
    app.use(cors())
+   app.use(cookieParser())
    mongoose.connect("mongodb+srv://gakizalievin219:2Vcjz9e8BGBXY0gr@cluster0.50z8r9k.mongodb.net/").then(()=>{
      console.log('database connected succesfully')
    }).catch((error)=>{
