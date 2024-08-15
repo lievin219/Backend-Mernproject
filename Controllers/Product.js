@@ -124,46 +124,46 @@ export const deleteProduct = async (req, res) => {
 
 
 
-//  export const getProducts=async(req,res)=>{
-//   try{
-//       const allproducts=await FinalProducts.find()
-//        if(allproducts.length>0){
-//          res.status(400).json({success:'all products',message:allproducts})
-//        }
-//        else if(allproducts.length<0){
-//          res.status(401).json('no products there in the store')
-//        }
-//       }
-//        catch(err){
-//          res.status(600).json(`error:${err}`)
-         
-//        }
-   
-//  }
-export const getProducts = async (req, res) => {
-  try {
-      const allproducts = await FinalProducts.find();
-
-      if (allproducts.length > 0) {
-          // Return products with a success status
-          res.status(200).json({
-              success: true,
-              message: 'All products retrieved successfully',
-              data: allproducts,
-          });
-      } else {
-          // Return a message that no products are available
-          res.status(200).json({
-              success: false,
-              message: 'No products found in the store',
-          });
+ export const getProducts=async(req,res)=>{
+  try{
+      const allproducts=await FinalProducts.find()
+       if(allproducts.length>0){
+         res.status(400).json({success:'all products',message:allproducts})
+       }
+       else if(allproducts.length<0){
+         res.status(401).json('no products there in the store')
+       }
       }
-  } catch (err) {
-      // Handle any errors that occur during the query
-      res.status(500).json({
-          success: false,
-          error: `Server error: ${err.message}`,
-      });
-  }
-};
+       catch(err){
+         res.status(401).json(`error:${err}`)
+         
+       }
+   
+ }
+// export const getProducts = async (req, res) => {
+//   try {
+//       const allproducts = await FinalProducts.find();
+
+//       if (allproducts.length > 0) {
+//           // Return products with a success status
+//           res.status(200).json({
+//               success: true,
+//               message: 'All products retrieved successfully',
+//               data: allproducts,
+//           });
+//       } else {
+//           // Return a message that no products are available
+//           res.status(200).json({
+//               success: false,
+//               message: 'No products found in the store',
+//           });
+//       }
+//   } catch (err) {
+//       // Handle any errors that occur during the query
+//       res.status(500).json({
+//           success: false,
+//           error: `Server error: ${err.message}`,
+//       });
+//   }
+// };
 
