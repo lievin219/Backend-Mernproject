@@ -5,7 +5,7 @@ import { authAuthentication } from '../Middlewares/index.js';
   const products=express.Router();
    products.post("/addproduct",addProduct);
    products.delete('/removeproduct/:id',deleteProduct)
-   products.get("/allproducts",authAuthentication,getProducts)
+   products.get("/allproducts",getProducts)
     export default products
  
 
