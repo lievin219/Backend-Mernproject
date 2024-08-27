@@ -36,7 +36,7 @@ import FinalProducts from '../Models/product.js'
     }
     catch(err){
             res.json(`an error occured :${err}`)
-             console.log(err)
+            
     }
 
      
@@ -116,10 +116,11 @@ export const deleteProduct = async (req, res) => {
 
       res.json({ message: 'Product deleted successfully', id: deletedProduct.ide, name: deletedProduct.name });
   } catch (err) {
-      res.status(500).json({ message: `An error occurred: ${err.message}` });
-      console.log(err);
+      res.status(500).json({ message: `An error occurred: ${err.message}` });     
+
+            
   }
-};
+};   
 
 
 
@@ -131,11 +132,11 @@ export const deleteProduct = async (req, res) => {
          res.status(400).json({success:'all products',message:allproducts})
        }
        else if(allproducts.length<0){
-         res.status(401).json('no products there in the store')
+         res.status(401).json('no products there in the store')       
        }
-      }
+      }     
        catch(err){
-         res.status(401).json(`error:${err}`)
+         res.status(401).json({messages:`error:${err}`})
          
        }
    
