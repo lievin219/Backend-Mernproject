@@ -16,6 +16,15 @@ import bcrypt from 'bcrypt'
                  required:true,
                   unique:true
               },
+              cartData:{
+                 type:Object
+                 
+              },   
+               date:{
+                 type:Date,
+                 default:Date.now()
+               }
+
                
     })
 

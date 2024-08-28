@@ -129,9 +129,9 @@ export const deleteProduct = async (req, res) => {
   try{
       const allproducts=await FinalProducts.find()
        if(allproducts.length>0){
-         res.status(400).json({success:'all products',message:allproducts})
+         res.status(200).json({success:'all products',message:allproducts})
        }
-       else if(allproducts.length<0){
+       else if(allproducts.length===0){
          res.status(401).json('no products there in the store')       
        }
       }     

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
     const token = req.cookies.authToken || req.headers['authorization'];
     if(!token){
          return res.status(401).json({
-             message:"Access denied no Token Found "
+             message:" you are not authorized to access this page "
          })
     }
      try{
