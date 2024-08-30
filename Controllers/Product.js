@@ -133,14 +133,17 @@ export const deleteProduct = async (req, res) => {
        }
        else if(allproducts.length===0){
          res.status(401).json('no products there in the store')       
+
+
        }
       }     
        catch(err){
          res.status(401).json({messages:`error:${err}`})
+
          
        }
    
- }
+ }    
 // export const getProducts = async (req, res) => {
 //   try {
 //       const allproducts = await FinalProducts.find();
@@ -167,4 +170,48 @@ export const deleteProduct = async (req, res) => {
 //       });
 //   }
 // };
+   export const newcollection=async(req,res)=>{
+        try{    
+                
+          
+           let  products=await FinalProducts.find({})
+            let newcollections= products.slice(1).slice(-8)
+             console.log('newcollection fetched',newcollections)
+              res.status(200).json(`newColllections  are here : ${newcollections} `)
+                      
 
+
+
+
+                
+               
+
+
+
+
+                                  
+                  
+               
+
+                                                                         
+                          
+            
+                              
+                               
+
+                
+                         
+                
+                  
+                        
+                         
+              
+           
+        }
+        catch(err){
+               return res.json(`Error:${err}`)  
+        }
+   }
+      
+                             
+                              
