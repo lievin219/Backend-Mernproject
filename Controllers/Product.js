@@ -177,7 +177,7 @@ export const deleteProduct = async (req, res) => {
            let  products=await FinalProducts.find({})
             let newcollections= products.slice(1).slice(-8)
              console.log('newcollection fetched',newcollections)
-              res.status(200).json(`newColllections  are here : ${newcollections} `)
+              res.status(200).json(newcollections)
                       
 
 
