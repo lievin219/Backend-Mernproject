@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import dataUsers from '../Models/Users.js'
 import FinalProducts from '../Models/product.js'
 
 
@@ -212,6 +213,40 @@ export const deleteProduct = async (req, res) => {
                return res.json(`Error:${err}`)  
         }
    }
+
+    export const popularWomen=async(req,res)=>{
+      try{
+         
       
+           const products=await FinalProducts.find({category:"women"})
+            const WomenLatest=products.slice(0,4)
+            res.status(200).json(WomenLatest)}
+             catch(err){
+                res.status(400).json({error:`an error occured is ${err}`})
+             }
+    }
+       export const AddToCart=async(req,res)=>{
+         console.log(req.body)
+let userData=await dataUsers.findOne({_id:req.user.id})
+ userData.cartData[req.body.itemId]+=1
+ await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
+  res.json("Addded success")
+       }
+
+        export const removefromCart=async(req,res)=>{
+           console.log('removed',req.body.itemId)
+          let userData=await dataUsers.findOne({_id:req.user.id})
+          if(userData.cartData[req.body.itemId]>0)
+
+          userData.cartData[req.body.itemId] -=1
+        
+          await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
+           res.json("Removed  success")
+        }
+
+        export const getTocart=async(req,res)=>{
+                        const usedata=await dataUsers.findOne({_id:req.user.id})
+                         res.json(usedata.cartData)
+        }
                              
                               

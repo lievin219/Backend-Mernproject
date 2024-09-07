@@ -75,12 +75,12 @@ import dataUsers from '../Models/Users.js'
   };
 
      export const LogOut=(req,res)=>{
-      try{
-    // try{  res.clearCookie('authToken',{
-    //      httpOnly: true, // Ensures the cookie is not accessible via JavaScript,
-    //      secure:true,
-    //      sameSite: 'Strict',
-    //    })
+     
+    try{  res.clearCookie('authTokenii',{
+         httpOnly: true, // Ensures the cookie is not accessible via JavaScript,
+         secure:true,
+         sameSite: 'Strict',
+       })
      
         res.status(200).json({message:` you are now logged out succesfully!`})}
         catch(err){
@@ -88,16 +88,30 @@ import dataUsers from '../Models/Users.js'
          }
         
      }
-   // export const GetUsers=async(req,res)=>{
+   export const GetUsers=async(req,res)=>{
 
-   //           try{
-   //              const users=await dataUsers.find()
-   //               return res.status(200).json({message:'all users'},users)
+             try{
+                const users=await dataUsers.find()
+                 return res.status(200).json(users)
                     
                 
-   //           }
-   //            catch(err){
+             }
+              catch(err){
                 
-   //            }
-   // }
-  
+              }
+   }
+   export const fetchUser=(req,res,next)=>{
+          const users=req.header('auth-tokenii')
+          if(!users){
+             res.status(401).json({err:'pleade enter with a valid token '})
+          }
+   
+    else{
+       try{
+         
+       }
+       catch(err){
+ res.status(400).json({error:` an error is ${err}`})
+       }
+    }
+  }

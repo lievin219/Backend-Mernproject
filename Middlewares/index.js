@@ -1,11 +1,13 @@
 import express from 'express'
+
 import jwt from 'jsonwebtoken'
 
  export const authAuthentication=async(req,res,next)=>{
-    const token = req.cookies.authToken || req.headers['authorization'];
+    const token = req.cookies.authTokenii || req.headers['authorization']?.split(' ')[1];  // Updated to match token name
+
     if(!token){
          return res.status(401).json({
-             message:" you are not authorized to access this page "
+             message:" you are not authorized to access this page"
          })
     }
      try{
