@@ -230,9 +230,9 @@ export const deleteProduct = async (req, res) => {
 let userData=await dataUsers.findOne({_id:req.user.id})
  userData.cartData[req.body.itemId]+=1
  await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-  res.json("Addded success")
+  res.json(dataUsers)
        }
-
+                    
         export const removefromCart=async(req,res)=>{
            console.log('removed',req.body.itemId)
           let userData=await dataUsers.findOne({_id:req.user.id})
@@ -241,7 +241,7 @@ let userData=await dataUsers.findOne({_id:req.user.id})
           userData.cartData[req.body.itemId] -=1
         
           await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-           res.json("Removed  success")
+           res.json(dataUsers)
         }
 
         export const getTocart=async(req,res)=>{
