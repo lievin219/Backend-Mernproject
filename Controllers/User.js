@@ -65,7 +65,7 @@ import dataUsers from '../Models/Users.js'
           res.cookie('authTokenii', token, {
               // maxAge: 3600000, // 1 hour
               httpOnly: false, // Not accessible via JavaScript
-              secure: true,// Set to true if using HTTPS set to false while building and runnning  your project locally
+              secure:true ,// Set to true if using HTTPS set to false while building and runnning  your project locally
               sameSite: 'None', // Allows cross-site cookies, if applicable
           });
           return res.status(200).json({ message: 'Login successful' });

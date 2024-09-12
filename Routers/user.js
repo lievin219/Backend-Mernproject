@@ -10,5 +10,6 @@ import { LoginPage } from '../Controllers/User.js';
  Users.post('/Register',Register);
  Users.post('/login',LoginPage)
  Users.post('/logout',LogOut)
+
  Users.get('/users',authAuthentication,GetUsers)
   export default Users
