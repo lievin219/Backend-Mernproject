@@ -15,9 +15,12 @@ const __dirname = path.dirname(__filename);
    const app=express()
    app.use(express.json())
    app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000','https://lievin219.github.io/Ecommerce-MERN-PROJECT/','https://lievin219.github.io'],
+    origin: ['http://localhost:5173', 'http://localhost:3000', 'https://lievin219.github.io/Ecommerce-MERN-PROJECT/', 'https://lievin219.github.io'],
     credentials: true, // Allow credentials (cookies)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 }));
+
    app.use(cookieParser())
    mongoose.connect("mongodb+srv://gakizalievin219:2Vcjz9e8BGBXY0gr@cluster0.50z8r9k.mongodb.net/").then(()=>{
      console.log('database connected succesfully')
