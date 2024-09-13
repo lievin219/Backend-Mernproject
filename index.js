@@ -55,6 +55,6 @@ app.use('/images',express.static(path.join(__dirname,'Upload/images')))
 app.use("/",products)
 app.use("/",Users)
   app.post("/upload",upload.single('product'),(req,res)=>{
-        res.json({success:true,image_Url:`http://localhost:${port}/images/${req.file.filename}`})      
+        res.json({success:true,image_Url:`https://backend-mernproject-u66q.onrender.com/images/${req.file.filename}`})      
   })        
    
