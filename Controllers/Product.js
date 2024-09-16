@@ -225,13 +225,36 @@ export const deleteProduct = async (req, res) => {
                 res.status(400).json({error:`an error occured is ${err}`})
              }
     }
-       export const AddToCart=async(req,res)=>{
-         console.log(req.body)
-let userData=await dataUsers.findOne({_id:req.user.id})
- userData.cartData[req.body.itemId]+=1
- await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-  res.json(dataUsers)
-       }
+//        export const AddToCart=async(req,res)=>{
+//          console.log(req.body)
+//          const userId =new  mongoose.Types.ObjectId(req.user.id); // Cast to ObjectId
+// let userData=await dataUsers.findOne({_id:req.user.id})
+//  userData.cartData[req.body.itemId]+=1
+//  await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
+//   res.json(dataUsers)
+//        }
+
+
+export const AddToCart = async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const userId = new mongoose.Types.ObjectId(req.user.id);
+    let userData = await dataUsers.findOne({ _id: userId });
+    
+    if (!userData) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    userData.cartData[req.body.itemId] += 1;
+    await dataUsers.findOneAndUpdate({ _id: userId }, { cartData: userData.cartData });
+
+    res.json(userData);
+  } catch (error) {
+    console.error('Error in AddToCart:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
                     
         export const removefromCart=async(req,res)=>{
            console.log('removed',req.body.itemId)

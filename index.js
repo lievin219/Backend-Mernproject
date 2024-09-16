@@ -22,7 +22,11 @@ const __dirname = path.dirname(__filename);
 }));
 
    app.use(cookieParser())
-   mongoose.connect("mongodb+srv://gakizalievin219:2Vcjz9e8BGBXY0gr@cluster0.50z8r9k.mongodb.net/").then(()=>{
+   mongoose.connect("mongodb+srv://gakizalievin219:2Vcjz9e8BGBXY0gr@cluster0.50z8r9k.mongodb.net/", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
+  }).then(()=>{
      console.log('database connected succesfully')
    }).catch((error)=>{
      console.log(`database failed to  connect due to ${error}`)
@@ -58,3 +62,4 @@ app.use("/",Users)
         res.json({success:true,image_Url:`http://localhost:${port}/images/${req.file.filename}`})      
   })        
    
+   export default app
