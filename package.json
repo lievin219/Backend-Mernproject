@@ -2,7 +2,7 @@
   "name": "ecommerce_backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js",
     "test": "mocha testing/production.test.js"
