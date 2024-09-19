@@ -67,7 +67,9 @@ import dataUsers from '../Models/Users.js'
               httpOnly: false, // Not accessible via JavaScript
               secure:true ,
               // Set to true if using HTTPS set to false while building and runnning  your project locally
-              sameSite: 'None', // Allows cross-site cookies, if applicable
+              sameSite: 'None',
+              maxAge: 24 * 60 * 60 * 1000
+               // 1 day // Allows cross-site cookies, if applicable
           });
           return res.status(200).json({ message: 'Login successful' });
       } catch (err) {
