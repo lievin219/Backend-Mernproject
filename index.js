@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
    const app=express()
    app.use(express.json())
    app.use(cors({
-    origin:"https://lievin219.github.io/Ecommerce-MERN-PROJECT/",
+    origin:"https://lievin219.github.io",
     credentials: true, // Allow credentials (cookies)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
