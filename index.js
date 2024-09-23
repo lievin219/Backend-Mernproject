@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
     origin:"https://lievin219.github.io",
     credentials: true, // Allow credentials (cookies)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'], // Allow specific headers
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 }));
 
    app.use(cookieParser())
@@ -33,7 +33,7 @@ const __dirname = path.dirname(__filename);
    })
    app.listen(port,(err)=>{
     if(err){
-         console.log(` an eror which  is cousing problems is :${err}`)
+         console.log(` an eror which is cousing problems is :${err}`)
                         
     }
     else{
