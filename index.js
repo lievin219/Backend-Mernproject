@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
     origin:"https://lievin219.github.io",
     credentials: true, // Allow credentials (cookies)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'], // Allow specific headers
 }));
 
    app.use(cookieParser())
