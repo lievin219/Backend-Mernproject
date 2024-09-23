@@ -33,7 +33,7 @@ const __dirname = path.dirname(__filename);
    })
    app.listen(port,(err)=>{
     if(err){
-         console.log(` an eror which is cousing problems is :${err}`)
+         console.log(` an eror which  is cousing problems is :${err}`)
                         
     }
     else{
