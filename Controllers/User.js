@@ -68,6 +68,7 @@ import dataUsers from '../Models/Users.js'
               secure:true,
               // Set to true if using HTTPS set to false while building and runnning  your project locally
               sameSite: 'None',
+              path: '/' ,
               maxAge: 24 * 60 * 60 * 1000
                // 1 day // Allows cross-site cookies, if applicable
           });
