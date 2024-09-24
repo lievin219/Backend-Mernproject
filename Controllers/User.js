@@ -64,8 +64,11 @@ import dataUsers from '../Models/Users.js'
           const token = jwt.sign({ id: EmailUser.id, role: EmailUser.role }, 'gakiza', { expiresIn: '5m' });
           res.cookie('authTokenii', token, {
              
-              httpOnly: true, 
+              httpOnly: false, 
              
+             
+              sameSite: 'None',
+              path: '/' ,
               maxAge: 24 * 60 * 60 * 1000
               
           });
