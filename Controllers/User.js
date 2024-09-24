@@ -65,6 +65,7 @@ import dataUsers from '../Models/Users.js'
           res.cookie('authTokenii', token, {
              
               httpOnly: false, 
+              secure:true,
              
              
               sameSite: 'None',
