@@ -16,10 +16,27 @@ const port = 4000;
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-  origin: ["https://lievin219.github.io"," http://localhost:5173/"],
-  credentials: true,
-}));
+const allowedOrigins = ['https://lievin219.github.io', 'http://localhost:5173']; // Allow localhost and your deployed app
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow if the origin is in the allowed list or there's no origin
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Enable cookies and credentials
+};
+
+app.use(cors(corsOptions));
+
+
+
+// app.use(cors({
+//   origin: ["https://lievin219.github.io"," http://localhost:5173/"],
+//   credentials: true,
+// }));
 
 app.use(cookieParser());
 
