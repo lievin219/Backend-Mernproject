@@ -1,4 +1,4 @@
-import express from 'express';
+   import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import products from './Routers/product.js';
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://lievin219.github.io",
+  origin: ["https://lievin219.github.io"," http://localhost:5173/"],
   credentials: true,
 }));
 
