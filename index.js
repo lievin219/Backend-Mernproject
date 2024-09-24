@@ -82,7 +82,7 @@ const upload = multer({ storage: storage });
 // Image upload route
 app.post('/upload', upload.single('product'), (req, res) => {
   const baseURL = process.env.NODE_ENV === 'production'
-    ? 'https://backend-mernproject-u66q.onrender.com'  // Your production backend URL
+    ? 'https://backend-mernproject-u66q.onrender.com'  //  production backend URL
     : `http://localhost:${port}`;
 
   const imageUrl = `${baseURL}/images/${req.file.filename}`;
