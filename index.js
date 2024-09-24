@@ -17,9 +17,10 @@ const __dirname = path.dirname(__filename);
    app.use(cors({
     origin:"https://lievin219.github.io",
     credentials: true, // Allow credentials (cookies)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization','Access-Control-Allow-Credentials'], // Allow specific headers
+    
 }));
+// methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+//     allowedHeaders: ['Content-Type', 'Authorization','Access-Control-Allow-Credentials'], // Allow specific headers
 
    app.use(cookieParser())
    mongoose.connect("mongodb+srv://gakizalievin219:2Vcjz9e8BGBXY0gr@cluster0.50z8r9k.mongodb.net/", {
