@@ -7,12 +7,14 @@ import jwt from 'jsonwebtoken';
 import path from 'path';
 import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+  dotenv.config()  
 
-const port = 4000;
+const port = process.env.Port;  
 const app = express();
 
 app.use(express.json());
@@ -83,7 +85,7 @@ const upload = multer({ storage: storage });
 app.post('/upload', upload.single('product'), (req, res) => {
   const baseURL = process.env.NODE_ENV === 'production'
     ? 'https://backend-mernproject-u66q.onrender.com'  //  production backend URL
-    : `https://backend-mernproject-u66q.onrender.com`;
+    : `http://localhost:${port}`;
 
   const imageUrl = `${baseURL}/images/${req.file.filename}`;
   res.json({ success: true, image_Url: imageUrl });
