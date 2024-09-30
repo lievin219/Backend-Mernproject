@@ -228,7 +228,7 @@ export const deleteProduct = async (req, res) => {
 //        export const AddToCart=async(req,res)=>{
 //          console.log(req.body)
 //          const userId =new  mongoose.Types.ObjectId(req.user.id); // Cast to ObjectId
-// let userData=await dataUsers.findOne({_id:req.user.id})
+// let userData=await dataUsers.findOne({_id:req.user.id})  
 //  userData.cartData[req.body.itemId]+=1
 //  await dataUsers.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData})
 //   res.json(dataUsers)
@@ -271,5 +271,10 @@ export const AddToCart = async (req, res) => {
                         const usedata=await dataUsers.findOne({_id:req.user.id})
                          res.json(usedata.cartData)
         }
+
+         export const addImage=(req,res)=>{
+        const image=req.body
+         
+         }
                              
                               

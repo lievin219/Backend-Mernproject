@@ -1,5 +1,5 @@
 import express from 'express'
- import { AddToCart, addProduct, deleteProduct, getProducts, getTocart, newcollection, popularWomen, removefromCart} from '../Controllers/Product.js'
+ import { AddToCart, addImage, addProduct, deleteProduct, getProducts, getTocart, newcollection, popularWomen, removefromCart} from '../Controllers/Product.js'
  import { GetUsers, LoginPage } from '../Controllers/User.js';
 import { authAuthentication } from '../Middlewares/index.js';
   const products=express.Router();
@@ -11,6 +11,7 @@ import { authAuthentication } from '../Middlewares/index.js';
    products.post("/addtocart",authAuthentication,AddToCart)   
    products.post('/removefromcart',authAuthentication,removefromCart)
    products.post('/gettocart',authAuthentication,getTocart)
+  
 
     export default products
  
