@@ -64,13 +64,12 @@ import dataUsers from '../Models/Users.js'
           const token = jwt.sign({ id: EmailUser.id, role: EmailUser.role }, 'gakiza', { expiresIn: '5m' });
           res.cookie('authTokenii', token, {
              
-              httpOnly: true, 
-              secure:false,
-             
-             
-              sameSite: 'None',
-              path: '/' ,
-              maxAge: 24 * 60 * 60 * 1000
+            httpOnly: false,
+            secure: true,  // Use false for local development (HTTP)
+            sameSite: 'None',  // Use 'Lax' for local development to prevent some CORS issues
+            path: '/',
+            maxAge: 3 * 60 * 1000
+         
               
           });
           return res.status(200).json({ message: 'Login successful' });

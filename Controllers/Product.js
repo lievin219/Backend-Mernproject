@@ -102,7 +102,7 @@ import FinalProducts from '../Models/product.js'
 export const deleteProduct = async (req, res) => {
   try {
       const productId = parseInt(req.params.id, 10); // Convert to number
-      console.log('Received productId:', productId); // Debugging line
+  
 
       if (isNaN(productId)) {
           return res.status(400).json({ message: 'Invalid product ID' });
@@ -236,7 +236,7 @@ export const deleteProduct = async (req, res) => {
 
 
 export const AddToCart = async (req, res) => {
-  console.log(req.body);
+  
 
   try {
     const userId = new mongoose.Types.ObjectId(req.user.id);
@@ -257,7 +257,8 @@ export const AddToCart = async (req, res) => {
 };
                     
         export const removefromCart=async(req,res)=>{
-           console.log('removed',req.body.itemId)
+           
+           
           let userData=await dataUsers.findOne({_id:req.user.id})
           if(userData.cartData[req.body.itemId]>0)
 
