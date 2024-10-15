@@ -236,7 +236,7 @@ export const AddToCart = async (req, res) => {
     userData.cartData[req.body.itemId] += 1;
     await dataUsers.findOneAndUpdate({ _id: userId }, { cartData: userData.cartData });
 
-    res.json(userData);
+    res.json(dataUsers);
   } catch (error) {
     console.error('Error in AddToCart:', error);
     res.status(500).json({ message: error.message });
