@@ -195,20 +195,7 @@ export const deleteProduct = async (req, res) => {
                
 
                                                                          
-                          
-            
-                              
-                               
-
-                
-                         
-                
-                  
-                        
-                         
-              
-           
-        }
+}
         catch(err){
                return res.json(`Error:${err}`)  
         }

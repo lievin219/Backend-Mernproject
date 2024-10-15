@@ -23,7 +23,10 @@ import bcrypt from 'bcrypt'
                date:{
                  type:Date,
                  default:Date.now()
-               }
+               },
+               verified:{
+                type: Boolean,
+    default: false}
 
                
     })

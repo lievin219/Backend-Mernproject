@@ -1,8 +1,10 @@
    import express from 'express'
    import cookie_parser from 'cookie-parser'
+   import nodemailer from 'nodemailer'
    import  bcrypt from 'bcrypt'
    import jwt from 'jsonwebtoken'
 import dataUsers from '../Models/Users.js'
+import UserOtpVerification from '../Middlewares/UserotpVerification.js'
 
      export const Register=async(req,res)=>{
       const{role,password,email,cartData}=req.body
@@ -27,6 +29,43 @@ import dataUsers from '../Models/Users.js'
               res.status(401).json({message:`invalid: ${err}`})
         }
      }
+     const transporter = nodemailer.createTransport({
+      service: 'gmail', // Use 'smtp.your-email-provider.com' for custom SMTP servers
+      auth: {
+        user: 'lievinm635@gmail.com',
+        pass: 'Mugabekazilievin219&', // Use an App Password or OAuth2 for security
+      },
+    });
+
+      const sendOtpVERIFICATION=async({_id,email},res)=>{
+ try{
+   const otp=`${Math.floor(1000+Math.random()*900)}`
+
+    const mailoptions={from:process.env.AuthEmail,to:email,subjet:"verify your email address",
+      html:`<p>enter <b>${otp}</b> on app to verify  email address to sign up on our website </p>
+      <p> this code expires in 1 hour</p>`
+      ,
+    }
+      const saltRounds=10;
+       
+       const hashedotp=await bcrypt.hash(otp,saltRounds)
+   const newOtpverified=await new UserOtpVerification({
+        userId:_id,
+        OTP:hashedotp,
+        createdAt:Date.now(),
+        expiresAt:Date.now()+3600000
+       })
+       await newOtpverified.save()
+       await transporter.sendMail(mailoptions)
+        res.json({status:"Pending",message:"verification otp send via email",data:{
+           userId:_id,
+           email
+        }})
+   
+ }catch(err){
+    res.status(400).json('an error leads to fail to load your otp!')
+ }
+      }
 
 
      export const LoginPage = async (req, res) => {
@@ -72,7 +111,7 @@ import dataUsers from '../Models/Users.js'
          
               
           });
-          return res.status(200).json({ message: 'Login successful' });
+          return res.status(200).json({ message: 'Login successful',token });
       } catch (err) {
           return res.status(400).json(`err:${err}`);
       }
